@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">BMI Calculator</string>
+    <string name="weight_textview">Weight</string>
+    <string name="height_textview">Height</string>
+    <string name="bmi_textview">BMI</string>
+    <string name="english_radiobutton">pound/inch</string>
+    <string name="metric_radiobutton">kilogram/meter</string>
+    <string name="calculate_button">Calculate BMI</string>
+    <string name="advice_button">Get Advice</string>
+    <string name="weight_hint">enter weight</string>
+    <string name="height_hint">enter height</string>
+    <string name="calculatedBMI_textview"></string>
+</resources>

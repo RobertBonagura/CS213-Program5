@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/weightTextView"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/weight_textview"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <EditText
+        android:id="@+id/weightEditText"
+        android:layout_width="191dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="108dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/weight_hint"
+        android:inputType="number"
+        app:layout_constraintLeft_toRightOf="@id/weightTextView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/heightTextView"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/height_textview"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weightTextView" />
+
+    <EditText
+        android:id="@+id/heightEditText"
+        android:layout_width="190dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="32dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/height_hint"
+        android:inputType="number"
+        app:layout_constraintLeft_toRightOf="@id/heightTextView"
+        app:layout_constraintTop_toBottomOf="@id/weightEditText" />
+
+    <TextView
+        android:id="@+id/bmiTextView"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="44dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:text="@string/bmi_textview"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/heightTextView" />
+
+    <TextView
+        android:id="@+id/calculatedBmiTextView"
+        android:layout_width="194dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:text=""
+        app:layout_constraintLeft_toRightOf="@id/bmiTextView"
+        app:layout_constraintTop_toBottomOf="@id/heightEditText" />
+
+    <RadioGroup
+        android:id="@+id/radioButtonGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.56">
+
+        <RadioButton
+            android:id="@+id/englishRadioButton"
+            android:layout_width="110dp"
+            android:layout_height="60dp"
+            android:text="@string/english_radiobutton" />
+
+        <RadioButton
+            android:id="@+id/metricRadoButton"
+            android:layout_width="140dp"
+            android:layout_height="60dp"
+            android:text="@string/metric_radiobutton" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/caclulateButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="196dp"
+        android:onClick="calculateBMI"
+        android:text="@string/calculate_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/adviceButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="16dp"
+        android:onClick="displayAdvice"
+        android:text="@string/advice_button"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/caclulateButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
