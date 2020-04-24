@@ -10,4 +10,6 @@
     <string name="weight_hint">enter weight</string>
     <string name="height_hint">enter height</string>
     <string name="calculatedBMI_textview"></string>
+    <string name="title_advice_activity">Advice from BMI Result</string>
+    <string name="back">Back</string>
 </resources>
