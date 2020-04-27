@@ -114,11 +114,14 @@ public class MainActivity extends AppCompatActivity {
         // TODO: Update weightEditText and heightEditText hint values based on Radio Buttons
         // This should actually be done in a seperate On-click listener method.
 
+        if(height == 0){
+            throw new ArithmeticException();
+        }
         float bmi;
         if (isMetric) {
-            bmi = weight / (float)(height * height);
+            bmi = ( (float) weight) / (height * height);
         } else {
-            bmi = weight * 703 / (float)(height * height);
+            bmi = ( (float) weight) * 703 / (height * height);
         }
         bmi = ((float)Math.round(bmi * 100.0) / 100);
 
