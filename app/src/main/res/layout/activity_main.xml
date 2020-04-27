@@ -26,7 +26,7 @@
         android:layout_marginTop="108dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/weight_hint"
+        android:hint="Enter weight in lb"
         android:inputType="number"
         app:layout_constraintLeft_toRightOf="@id/weightTextView"
         app:layout_constraintTop_toTopOf="parent" />
@@ -50,7 +50,7 @@
         android:layout_marginTop="32dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/height_hint"
+        android:hint="Enter height in inches"
         android:inputType="number"
         app:layout_constraintLeft_toRightOf="@id/heightTextView"
         app:layout_constraintTop_toBottomOf="@id/weightEditText" />
@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@id/heightEditText" />
 
     <RadioGroup
-        android:id="@+id/radioButtonGroup"
+        android:id="@+id/unitsRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -92,13 +92,16 @@
             android:id="@+id/englishRadioButton"
             android:layout_width="110dp"
             android:layout_height="60dp"
-            android:text="@string/english_radiobutton" />
+            android:text="@string/english_radiobutton"
+            android:onClick="radioButtonClick"
+            android:checked="true"/>
 
         <RadioButton
-            android:id="@+id/metricRadoButton"
+            android:id="@+id/metricRadioButton"
             android:layout_width="140dp"
             android:layout_height="60dp"
-            android:text="@string/metric_radiobutton" />
+            android:text="@string/metric_radiobutton"
+            android:onClick="radioButtonClick"/>
     </RadioGroup>
 
     <Button

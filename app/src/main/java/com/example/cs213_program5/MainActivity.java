@@ -4,24 +4,55 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText weightEditText;
     private EditText heightEditText;
     private TextView calculatedBmiTextView;
-    private RadioButton englishRadioButton;
     private RadioButton metricRadioButton;
+    private RadioButton englishRadioButton;
+    String BMIValue = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        weightEditText = findViewById(R.id.weightEditText);
+        heightEditText = findViewById(R.id.heightEditText);
+
+        metricRadioButton = findViewById(R.id.metricRadioButton);
+        englishRadioButton = findViewById(R.id.englishRadioButton);
+
     }
+
+    public void radioButtonClick(View v){
+        String toastMessage = "default message";
+        if(metricRadioButton.isChecked()) {
+            toastMessage = "Calculating in metric system.";
+            weightEditText.setHint("Enter weight in kg");
+            heightEditText.setHint("Enter height in cm");
+        }else {
+            weightEditText.setHint("Enter weight in lb");
+            heightEditText.setHint("Enter height in inches");
+            toastMessage = "Calculating in imperial system";
+        }
+
+        sendToastMessage(toastMessage);
+    }
+
+    private void sendToastMessage(String msg){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+
 
     /**
      * On-Click handler for Calculate BMI Button
@@ -29,17 +60,20 @@ public class MainActivity extends AppCompatActivity {
      * @param targetedView
      */
     public void setBMI(android.view.View targetedView){
-        String bmi;
         try {
-            bmi = calculateBMI();
+            calculateBMI();
         } catch (NumberFormatException e) {
             // TODO: Display bad input Toast Message (user entered non numeric)
+            sendToastMessage("Please enter a value for both height and weight");
             return;
         } catch (ArithmeticException e){
             // TODO: Display bad input Toast Message (user entered 0 or empty value)
+            sendToastMessage("Height value cannot be zero");
             return;
         }
-        calculatedBmiTextView.setText(bmi);
+        if(BMIValue != null) {
+            calculatedBmiTextView.setText(BMIValue);
+        }
     }
 
     /**
@@ -47,22 +81,13 @@ public class MainActivity extends AppCompatActivity {
      * @param targetedView
      */
     public void startAdviceActivity(android.view.View targetedView){
-        String bmi;
-        try {
-            bmi = calculateBMI();
-        } catch (NumberFormatException e) {
+        if (BMIValue == null || BMIValue.length() == 0){
             // TODO: Toast Message
+            sendToastMessage("please calculate a BMI value");
             return;
-        } catch (ArithmeticException e){
-            // TODO: Toast Message
-            return;
-        }
-        calculatedBmiTextView.setText(bmi);
-        if (bmi == null || bmi.length() == 0){
-            // TODO: Toast Message
         } else {
             Intent intent = new Intent(MainActivity.this, AdviceActivity.class);
-            intent.putExtra("BMI", bmi);
+            intent.putExtra("BMI", BMIValue);
             startActivity(intent);
         }
     }
@@ -72,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
      * Returns BMI as a string
      * @return
      */
-    private String calculateBMI(){
+    private void calculateBMI(){
         weightEditText = findViewById(R.id.weightEditText);
         heightEditText = findViewById(R.id.heightEditText);
         calculatedBmiTextView = findViewById(R.id.calculatedBmiTextView);
@@ -80,25 +105,25 @@ public class MainActivity extends AppCompatActivity {
         int weight = Integer.parseInt(weightEditText.getText().toString());
         int height = Integer.parseInt(heightEditText.getText().toString());
 
-        // TODO: Read from Radio Buttons
-        // And set isMetric boolean value appropriately
-        englishRadioButton = findViewById(R.id.englishRadioButton);
-        metricRadioButton = findViewById(R.id.metricRadoButton);
-
         boolean isMetric = false;
+
+        if(metricRadioButton.isChecked()) {
+            isMetric = true;
+        }
 
         // TODO: Update weightEditText and heightEditText hint values based on Radio Buttons
         // This should actually be done in a seperate On-click listener method.
 
         float bmi;
         if (isMetric) {
-            bmi = weight / (height * height);
+            bmi = weight / (float)(height * height);
         } else {
-            bmi = weight * 703 / (height * height);
+            bmi = weight * 703 / (float)(height * height);
         }
+        bmi = ((float)Math.round(bmi * 100.0) / 100);
 
         String bmiString = Float.toString(bmi);
-        return bmiString;
+        BMIValue = bmiString;
     }
 
 }

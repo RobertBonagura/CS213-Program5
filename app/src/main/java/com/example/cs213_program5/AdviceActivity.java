@@ -29,13 +29,16 @@ public class AdviceActivity extends AppCompatActivity {
         //TODO: Find appropriate photos for each case and save files in app/src/main/res/drawable/
         if (bmi < 18.5){
             result = "Underweight";
+            image.setImageResource(R.drawable.eatmore);
         } else if (bmi < 25){
             result = "Normal";
-            image.setImageResource(R.drawable.pizza);
+            image.setImageResource(R.drawable.goodjob);
         } else if (bmi < 30){
             result = "Overweight";
+            image.setImageResource(R.drawable.eatmorevegetables);
         } else {
             result = "Obese";
+            image.setImageResource(R.drawable.rsz_stop);
         }
         advice.setText(result);
     }
